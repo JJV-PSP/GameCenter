@@ -1,0 +1,33 @@
+plugins {
+  id 'application'
+  id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+repositories {
+	mavenCentral()
+}
+
+javafx {
+    version = "23"
+    modules = [ 'javafx.base', 'javafx.swing', 'javafx.graphics', 
+'javafx.fxml', 'javafx.media']
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+mainClassName = 'dam.psp.GameCenter.App'
+
+application {
+    mainClass = 'dam.psp.GameCenter.App'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/java","src/main/resources"]
+            includes = ["**/*.fxml"]
+        }
+    }
+}
