@@ -1,18 +1,27 @@
 package dam.psp.GameCenter.Controllers;
 
 import dam.psp.GameCenter.Model.Game;
+import dam.psp.GameCenter.Util.ImageTools;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
-public class GameCard {
+public class GameCardController {
+
     private Game game;
+    
+    private MainBodyController mbController;
+    
     @FXML
     private Button btnDelete;
 
@@ -41,27 +50,22 @@ public class GameCard {
 
     @FXML
     void btnEditPressed() {
-        //TO-DO Agregar vista OGETE OGETE LAS MEJORES PUTAS DE LA ZONA, 
-        //NO TE LA PODER PERDER HIJO DE LA REMILL, SI NO ESTÁS ASI, ANDATE A LA CONCHA DE A LORA.
+        if (launchAddEditWindow(game)) {
+            mbController.drawList();
+        }
     }
 
     @FXML
     void btnFavPressed() {
-      this.game.setFav(!this.game.isFav());
+        this.game.setFav(!this.game.isFav());
     }
 
     @FXML
     void btnPlayPressed() {
-         
         ProcessBuilder processBuilder = new ProcessBuilder(game.getUrl());
-
         try {
-            // Iniciar el proceso
             Process process = processBuilder.start();
-
-            // Esperar a que el proceso termine (opcional)
             int exitCode = process.waitFor();
-            
         } catch (IOException e) {
             System.err.println("Error in " + this.getClass().toString() + " loading process file");
             System.err.println(e.getCause());
@@ -73,15 +77,33 @@ public class GameCard {
 
     public void setGame(Game game) {
         this.game = game;
+        loadGameData();
     }
-    
-    public void loadGameData(){
-        //TO-DO Setear la imagen de la tarjeta de canción pasandola a abse 64 imgGame.setImage(game);
+
+    public void setMbController(MainBodyController mbController) {
+        this.mbController = mbController;
+    }
+
+    public void loadGameData() {
+        imgGame.setImage(ImageTools.loadImgFromX64(game.getImage()));
         lblGameName.setText(game.getName());
         lblGameRoute.setText(game.getUrl());
-    
+        /*Estrella*/
     }
     
-    
-    
+    private boolean launchAddEditWindow(Game game) {
+        try {
+            Stage addEditStage = new Stage();
+            FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("/vistas/frmAddEdit.fxml"));
+            addEditStage.setScene(new Scene(fXMLLoader.load()));
+            AddEditController aeController = fXMLLoader.getController();
+            aeController.setGame(game);
+            return aeController.getResult();
+        } catch(IOException e) {
+            System.err.println("Error in " + this.getClass().toString() + " loading add edit window fxml file");
+            System.err.println(e.getCause());
+            return false;
+        }  
+    }
+
 }

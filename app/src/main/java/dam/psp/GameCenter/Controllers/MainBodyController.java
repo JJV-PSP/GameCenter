@@ -3,19 +3,25 @@ package dam.psp.GameCenter.Controllers;
 import dam.psp.GameCenter.Model.Game;
 import dam.psp.GameCenter.Util.DataManager;
 import dam.psp.GameCenter.Util.ViewStatus;
+import static dam.psp.GameCenter.Util.ViewStatus.GAMES;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class MainBodyController implements Initializable{
@@ -72,7 +78,7 @@ public class MainBodyController implements Initializable{
         if (viewStatus != ViewStatus.GAMES) {
             viewStatus = ViewStatus.GAMES;
             buttonSelected(btnGames);
-            fillGamesBody(games);
+            drawList();
         }
     }
     
@@ -81,14 +87,13 @@ public class MainBodyController implements Initializable{
         if (viewStatus != ViewStatus.FAVS) {
             viewStatus = ViewStatus.FAVS;
             buttonSelected(btnFavs);
-            fillGamesBody(filterFavGames());
+            drawList();
         }
     }
     
     @FXML
     void btnAddPressed() {
-        /*TO-DO*/
-        /*Formulario añadir*/
+        launchAddEditWindow();
     }
 
     @Override
@@ -143,31 +148,62 @@ public class MainBodyController implements Initializable{
         vboxListBody.getChildren().clear();
     }
     
+    public void drawList() {
+        switch (viewStatus) {
+            case GAMES -> {
+                fillGamesBody(games);
+            }
+            case FAVS -> {
+                fillGamesBody(filterFavGames());
+            }
+        }
+    }
+    
     private void fillGamesBody(List<Game> gamesLoaded) {
         clearBody();
         if (gamesLoaded != null) {
             for (Game game : gamesLoaded) {
                 vboxListBody.getChildren().add(createGameCard(game));
             }
-            createAddCard();
         }
     }
     
     private Parent createGameCard(Game game) {
-        /*TO-DO*/
-        /*Carga el fxml loader de la tarjeta juego y le da el game del parámetro para que ponga sus datos
-        por último, retorna el parent que da el fxml.load()*/
-        
-        /*return fxml.load;*/
-        return null;
+        try {
+            FXMLLoader fXMLloader = new FXMLLoader(getClass().getResource("/vistas/frmGameCard.fxml"));
+            Parent parent = fXMLloader.load();
+            GameCardController gcController = fXMLloader.getController();
+            gcController.setGame(game);
+            gcController.setMbController(this);
+            return parent;
+        } catch(IOException e) {
+            System.err.println("Error in " + this.getClass().toString() + " loading game card fxml file");
+            System.err.println(e.getCause());
+            return null;
+        }        
     }
     
-    private Parent createAddCard() {
-        /*TO-DO*/
-        /*Carga el fxml loader de la tarjeta añadir, por último, retorna el parent que da el fxml.load()*/
-        
-        /*return fxml.load;*/
-        return null;
+    private void launchAddEditWindow() {
+        try {
+            Stage addEditStage = new Stage();
+            FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("/vistas/frmAddEdit.fxml"));
+            addEditStage.setScene(new Scene(fXMLLoader.load()));
+            addEditStage.initStyle(StageStyle.UNDECORATED);
+            addEditStage.initModality(Modality.WINDOW_MODAL);
+            addEditStage.initOwner(stage);
+            addEditStage.showAndWait();
+            AddEditController aeController = fXMLLoader.getController();
+            if (aeController.getResult()) {
+                if (viewStatus == ViewStatus.GAMES) {
+                    fillGamesBody(games);
+                } else {
+                    fillGamesBody(filterFavGames());
+                }
+            }
+        } catch(IOException e) {
+            System.err.println("Error in " + this.getClass().toString() + " loading add edit window fxml file");
+            System.err.println(e.getCause());
+        }  
     }
     
     public void setStage(Stage stage) {

@@ -15,34 +15,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="300.0" styleClass="background-body-color" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.psp.GameCenter.Controllers.AddEditController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="300.0" style="-fx-border-color: #f3f3f3;" styleClass="background-body-color" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.psp.GameCenter.Controllers.AddEditController">
    <children>
       <HBox fx:id="hboxTitlebar" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" styleClass="toolbar-color">
          <children>
-            <Button fx:id="btnMini" layoutX="1331.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnMiniPressed" prefHeight="26.0" prefWidth="45.0">
-               <graphic>
-                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0">
-                     <children>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../media/mini_icon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <tooltip>
-                  <Tooltip text="Close window" />
-               </tooltip>
-               <styleClass>
-                  <String fx:value="toolbar-color" />
-                  <String fx:value="toolbar-button" />
-               </styleClass>
-            </Button>
             <Button fx:id="btnClose" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnClosePressed" prefHeight="26.0" prefWidth="45.0">
                <graphic>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0">
