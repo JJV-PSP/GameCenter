@@ -1,81 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.psp.GameCenter.Controllers.MainBodyController">
+<VBox prefHeight="794.0" prefWidth="1366.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.psp.GameCenter.Controllers.MainBodyController">
    <children>
-      <VBox prefWidth="75.0" style="-fx-background-color: #262626;">
+      <HBox fx:id="hboxTitlebar" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" styleClass="toolbar-color">
          <children>
-            <Button fx:id="btnGames" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnGamesPressed" prefHeight="110.0" prefWidth="100.0" style="-fx-background-color: transparent;">
+            <Button fx:id="btnMini" layoutX="1331.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnMiniPressed" prefHeight="26.0" prefWidth="45.0">
                <graphic>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0">
                      <children>
-                        <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../media/game_icon.png" />
+                              <Image url="@../media/mini_icon.png" />
                            </image>
                         </ImageView>
-                        <Label style="-fx-text-fill: #ffffff;" text="GAMES">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
                      </children>
-                  </VBox>
+                  </StackPane>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <tooltip>
+                  <Tooltip text="Close window" />
+               </tooltip>
+               <styleClass>
+                  <String fx:value="toolbar-color" />
+                  <String fx:value="toolbar-button" />
+               </styleClass>
             </Button>
-            <Button fx:id="btnFavs" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnFavsPressed" prefHeight="110.0" prefWidth="100.0" style="-fx-background-color: transparent;">
+            <Button fx:id="btnClose" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnClosePressed" prefHeight="26.0" prefWidth="45.0">
                <graphic>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0">
                      <children>
-                        <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../media/fav_icon.png" />
+                              <Image url="@../media/close_icon.png" />
                            </image>
                         </ImageView>
-                        <Label style="-fx-text-fill: #ffffff;" text="FAVS">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
                      </children>
-                  </VBox>
+                  </StackPane>
                </graphic>
-            </Button>
-            <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <Button fx:id="btnSettings" layoutX="10.0" layoutY="668.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSettingsPressed" prefHeight="110.0" prefWidth="100.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../media/settings_icon.png" />
-                           </image>
-                        </ImageView>
-                        <Label style="-fx-text-fill: #ffffff;" text="Settings">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <tooltip>
+                  <Tooltip text="Close window" />
+               </tooltip>
+               <styleClass>
+                  <String fx:value="toolbar-color" />
+                  <String fx:value="toolbar-button" />
+               </styleClass>
             </Button>
          </children>
-      </VBox>
-      <ScrollPane hbarPolicy="NEVER" maxHeight="768.0" prefWidth="1266.0" style="-fx-background-color: #323232;" HBox.hgrow="ALWAYS">
-         <content>
-            <VBox fx:id="vboxListBody" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="766.0" prefWidth="1266.0" style="-fx-background-color: #323232;" />
-         </content>
-      </ScrollPane>
+      </HBox>
+      <HBox>
+         <children>
+            <VBox prefWidth="75.0" styleClass="toolbar-color">
+               <children>
+                  <Button fx:id="btnAdd" layoutX="10.0" layoutY="668.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnAddPressed" prefHeight="110.0" prefWidth="100.0">
+                     <graphic>
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../media/add_icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label style="-fx-text-fill: #ffffff;" text="ADD NEW">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="toolbar-color" />
+                        <String fx:value="toolbar-button" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnGames" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnGamesPressed" prefHeight="110.0" prefWidth="100.0">
+                     <graphic>
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../media/game_icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label style="-fx-text-fill: #ffffff;" text="GAMES">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="toolbar-color" />
+                        <String fx:value="toolbar-button" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnFavs" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnFavsPressed" prefHeight="110.0" prefWidth="100.0">
+                     <graphic>
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../media/fav_icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label style="-fx-text-fill: #ffffff;" text="FAVS">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="toolbar-color" />
+                        <String fx:value="toolbar-button" />
+                     </styleClass>
+                  </Button>
+                  <Pane VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" maxHeight="768.0" prefWidth="1266.0" styleClass="background-body-color">
+                     <content>
+                        <VBox fx:id="vboxListBody" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="766.0" prefWidth="1266.0" styleClass="background-body-color" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
-</HBox>
+</VBox>

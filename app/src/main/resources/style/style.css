@@ -1,0 +1,15 @@
+.toolbar-color {
+    -fx-background-color: #262626;
+}
+
+.background-body-color {
+    -fx-background-color: #323232;
+}
+
+.toolbar-button {
+    -fx-background-radius: 0px;
+}
+
+.toolbar-button :hover {
+    -fx-background-color: #4c4c4c;
+}
