@@ -191,8 +191,9 @@ public class MainBodyController implements Initializable{
             addEditStage.initStyle(StageStyle.UNDECORATED);
             addEditStage.initModality(Modality.WINDOW_MODAL);
             addEditStage.initOwner(stage);
-            addEditStage.showAndWait();
             AddEditController aeController = fXMLLoader.getController();
+            aeController.initDragStage();
+            addEditStage.showAndWait();
             if (aeController.getResult()) {
                 if (viewStatus == ViewStatus.GAMES) {
                     fillGamesBody(games);

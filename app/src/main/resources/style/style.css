@@ -13,3 +13,7 @@
 .toolbar-button :hover {
     -fx-background-color: #4c4c4c;
 }
+
+.text-color {
+    -fx-text-fill: #f3f3f3;
+}

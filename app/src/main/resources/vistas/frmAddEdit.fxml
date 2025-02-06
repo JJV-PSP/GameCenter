@@ -53,7 +53,11 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtName" promptText="Enter a name" styleClass="toolbar-color" />
+                  <TextField fx:id="txtName" promptText="Enter a name">
+                     <styleClass>
+                        <String fx:value="toolbar-color" />
+                        <String fx:value="text-color" />
+                     </styleClass></TextField>
                </children>
             </VBox>
             <VBox layoutX="35.0" layoutY="35.0" prefWidth="225.0">
@@ -65,7 +69,11 @@
                   </Label>
                   <HBox>
                      <children>
-                        <TextField fx:id="txtPath" editable="false" prefWidth="215.0" promptText="Select a path" styleClass="toolbar-color" />
+                        <TextField fx:id="txtPath" editable="false" prefWidth="215.0" promptText="Select a path">
+                           <styleClass>
+                              <String fx:value="toolbar-color" />
+                              <String fx:value="text-color" />
+                           </styleClass></TextField>
                         <Pane minHeight="-Infinity" minWidth="-Infinity" HBox.hgrow="ALWAYS" />
                         <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPathPressed" prefHeight="25.0" prefWidth="25.0" styleClass="toolbar-color">
                            <graphic>

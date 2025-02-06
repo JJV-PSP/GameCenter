@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -24,6 +25,12 @@ public class AddEditController {
     private boolean result;
     
     private boolean editing = false;
+    
+    private double xOffset = 0;
+    
+    private double yOffset = 0;
+    
+    private String path = "";
     
     @FXML
     private Button btnClose;
@@ -69,7 +76,7 @@ public class AddEditController {
             MainBodyController.games.remove(game);
             MainBodyController.games.add(new Game(imagex64, txtName.getText(), txtPath.getText(), game.isFav()));
         } else {
-            MainBodyController.games.add(new Game(imagex64, txtName.getText(), txtPath.getText(), false));
+            MainBodyController.games.add(new Game(imagex64, txtName.getText(), path, false));
         }
         closeWindow();
     }
@@ -87,7 +94,10 @@ public class AddEditController {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Executable Files", "*.exe", "*.jar", "*.lnk", "*.url"));
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
-            txtPath.setText(selectedFile.toURI().toString());
+            path = selectedFile.toURI().toString();
+            path = path.substring(path.indexOf("file:/") + "file:/".length());
+            txtPath.setText(path);
+            
         }
     }
 
@@ -111,6 +121,19 @@ public class AddEditController {
     private void closeWindow() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
+    }
+    
+    public void initDragStage() {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        hboxTitlebar.setOnMousePressed((MouseEvent event) -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        hboxTitlebar.setOnMouseDragged((MouseEvent event) -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
     }
     
 }
