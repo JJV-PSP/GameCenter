@@ -26,9 +26,6 @@ public class GameCardController {
     private Button btnDelete;
 
     @FXML
-    private Button btnEdit;
-
-    @FXML
     private Button btnFav;
 
     @FXML
@@ -46,13 +43,7 @@ public class GameCardController {
     @FXML
     void btnDeletePressed() {
         MainBodyController.games.remove(this.game);
-    }
-
-    @FXML
-    void btnEditPressed() {
-        if (launchAddEditWindow(game)) {
-            mbController.drawList();
-        }
+        mbController.drawList();
     }
 
     @FXML
@@ -89,21 +80,6 @@ public class GameCardController {
         lblGameName.setText(game.getName());
         lblGameRoute.setText(game.getUrl());
         /*Estrella*/
-    }
-    
-    private boolean launchAddEditWindow(Game game) {
-        try {
-            Stage addEditStage = new Stage();
-            FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("/vistas/frmAddEdit.fxml"));
-            addEditStage.setScene(new Scene(fXMLLoader.load()));
-            AddEditController aeController = fXMLLoader.getController();
-            aeController.setGame(game);
-            return aeController.getResult();
-        } catch(IOException e) {
-            System.err.println("Error in " + this.getClass().toString() + " loading add edit window fxml file");
-            System.err.println(e.getCause());
-            return false;
-        }  
     }
 
 }

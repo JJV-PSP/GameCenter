@@ -96,6 +96,7 @@ public class AddEditController {
         if (selectedFile != null) {
             path = selectedFile.toURI().toString();
             path = path.substring(path.indexOf("file:/") + "file:/".length());
+            path = path.replace("%20", " ");
             txtPath.setText(path);
             
         }

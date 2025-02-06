@@ -44,15 +44,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#btnEditPressed" styleClass="toolbar-color">
-         <graphic>
-            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../media/edit_icon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#btnPlayPressed" styleClass="toolbar-color">
          <graphic>
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">

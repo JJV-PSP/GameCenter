@@ -107,6 +107,8 @@ public class MainBodyController implements Initializable{
         }
         
         btnGamesPressed();
+        
+        initSecureClose();
     }
     
     public void initDragStage() {
@@ -209,6 +211,12 @@ public class MainBodyController implements Initializable{
     
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+    
+    private void initSecureClose() {
+        stage.setOnCloseRequest(event -> {
+            DataManager.writeGamesToFile(games);
+        });
     }
 
 }
