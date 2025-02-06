@@ -134,7 +134,7 @@ public class MainBodyController implements Initializable{
     private List<Game> filterFavGames() {
         List<Game> favGames = new ArrayList<>();
         for (Game game : games) {
-            if (game.fav()) favGames.add(game);
+            if (game.isFav()) favGames.add(game);
         }
         return favGames;
     }
