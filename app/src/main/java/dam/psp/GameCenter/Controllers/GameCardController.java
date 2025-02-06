@@ -3,18 +3,11 @@ package dam.psp.GameCenter.Controllers;
 import dam.psp.GameCenter.Model.Game;
 import dam.psp.GameCenter.Util.ImageTools;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 public class GameCardController {
 
@@ -31,6 +24,9 @@ public class GameCardController {
     @FXML
     private Button btnPlay;
 
+    @FXML
+    private ImageView imgFavStar;
+    
     @FXML
     private ImageView imgGame;
 
@@ -49,6 +45,8 @@ public class GameCardController {
     @FXML
     void btnFavPressed() {
         this.game.setFav(!this.game.isFav());
+        changeStarSat();
+        mbController.drawList();
     }
 
     @FXML
@@ -79,7 +77,13 @@ public class GameCardController {
         imgGame.setImage(ImageTools.loadImgFromX64(game.getImage()));
         lblGameName.setText(game.getName());
         lblGameRoute.setText(game.getUrl());
-        /*Estrella*/
+        changeStarSat();
+    }
+    
+    public void changeStarSat(){
+    ColorAdjust colorAdjust = new ColorAdjust();
+    colorAdjust.setSaturation(game.isFav() ? 1 : -1);
+    imgFavStar.setEffect(colorAdjust);
     }
 
 }

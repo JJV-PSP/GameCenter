@@ -37,7 +37,7 @@
       </Button>
       <Button fx:id="btnFav" mnemonicParsing="false" onAction="#btnFavPressed" styleClass="toolbar-color">
          <graphic>
-            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgFavStar" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../media/star_icon.png" />
                </image>

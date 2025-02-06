@@ -91,7 +91,7 @@ public class AddEditController {
     void btnPathPressed() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an game executable file");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Executable Files", "*.exe", "*.jar", "*.lnk", "*.url"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Executable Files", "*.exe", "*.jar", "*.url"));
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             path = selectedFile.toURI().toString();

@@ -1,6 +1,8 @@
 package dam.psp.GameCenter;
 
 import dam.psp.GameCenter.Controllers.MainBodyController;
+import static dam.psp.GameCenter.Controllers.MainBodyController.games;
+import dam.psp.GameCenter.Util.DataManager;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,7 @@ public class App extends Application{
         primaryStage.getIcons().add(new Image("/media/app_icon.png"));
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.UNDECORATED);
+        initSecureClose(primaryStage);
         primaryStage.show();
     }
     
@@ -38,5 +41,11 @@ public class App extends Application{
             System.err.println(e.getCause());
             return null;
         }
+    }
+    
+    private void initSecureClose(Stage stage) {
+        stage.setOnCloseRequest(event -> {
+            DataManager.writeGamesToFile(games);
+        });
     }
 }
