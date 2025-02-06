@@ -54,12 +54,8 @@ public class GameCardController {
         ProcessBuilder processBuilder = new ProcessBuilder(game.getUrl());
         try {
             Process process = processBuilder.start();
-            int exitCode = process.waitFor();
         } catch (IOException e) {
             System.err.println("Error in " + this.getClass().toString() + " loading process file");
-            System.err.println(e.getCause());
-        } catch (InterruptedException e) {
-            System.err.println("Error in " + this.getClass().toString() + " thread interrupted");
             System.err.println(e.getCause());
         }
     }
